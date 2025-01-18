@@ -1,0 +1,70 @@
+# spring config
+spring:
+  #  multipart
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 10MB
+  # jackson mapping
+  jackson:
+    property-naming-strategy: SNAKE_CASE
+  #    db property
+  datasource:
+    url: ${SPRING_DATASOURCE_URL:jdbc:postgresql://localhost:5432/scm}
+    username: ${SPRING_DATASOURCE_USERNAME:alex}
+    password: ${SPRING_DATASOURCE_PASSWORD:alex}
+    driver-class-name: ${SPRING_DATASOURCE_DRIVER_NAME:org.postgresql.Driver}
+  jpa:
+    database-platform: ${SPRING_JPA_DIALECT:org.hibernate.dialect.PostgreSQLDialect}
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: ${JWT_ISSUER_URI}
+          jwk-set-uri: ${spring.security.oauth2.resourceserver.jwt.issuer-uri}/protocol/openid-connect/certs
+# custom config
+jwt:
+  token-uri: http://${OPEN_ID_HOST}:9090/realms/${KEYCLOAK_REALM}/protocol/openid-connect/token
+  open-id-security-name: keycloak
+  open-id-uri: http://${OPEN_ID_HOST}:9090/realms/${KEYCLOAK_REALM}/.well-known/openid-configuration
+
+auth:
+  keycloak:
+    config:
+      default-role: user
+      realm: ${KEYCLOAK_REALM}
+      domain: ${KEYCLOAK_DOMAIN}
+      admin-client-id: ${KEYCLOAK_ADMIN_CLIENT_ID}
+      admin-client-secret: ${KEYCLOAK_CLIENT_SECRET}
+# swagger doc
+springdoc:
+  api-docs:
+    path: /v3/api-docs
+  swagger-ui:
+    path: /swagger-ui.html
+
+#    caching mechanism
+cache:
+  type: REDIS
+  redis:
+    time-to-live: 6_00_000 # 10 min cache
+    cache-null-values: false
+#        logging setting
+logging:
+  level:
+    web: DEBUG
+    root: INFO
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: always
+  security:
+    enabled: false
