@@ -1,0 +1,22 @@
+{
+  "contacts": [
+    {
+      "id": 1,
+      "firstName": "vivek",
+      "lastName": "pandey ",
+      "avatar": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQkkVsRNVJ7O7xNGK7IXtRwchi4NsKzUUdPMMcmIdbDKH_x6DKXR2EQGWrBiM8KKga7Ey0&usqp=CAU",
+      "twitter": "@Handler",
+      "notes": "Some notes",
+      "favorite": true
+    },
+    {
+      "firstName": "test",
+      "lastName": "user",
+      "avatar": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ_FFqOOWB7PCFm_SDNea59oDBNk-7uEyw-kXdNS5NsMNz_snaHY8ePB3nCgAg6thAZvPo&usqp=CAU",
+      "twitter": "test_user",
+      "notes": "some notes",
+      "favorite": false,
+      "id": 2
+    }
+  ]
+}
